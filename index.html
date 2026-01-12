@@ -1,148 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Altronz - Corrected Sync</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Welcome</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-        body {
-            background-color: #000;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            font-family: 'Montserrat', sans-serif;
-        }
+  html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: black;
+  }
 
-        .container {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%; /* Ensures container spans width for responsiveness */
-        }
+  .video-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
 
-        /* THE CIRCLE: Starts at 0s, expands from center */
-        .expanding-circle {
-            position: absolute;
-            width: 250px; 
-            height: 250px;
-            border: 15px solid #fff; /* Thick white ring */
-            border-radius: 50%;
-            transform: scale(0);
-            opacity: 0;
-            z-index: 1;
-            /* Matches 'Ellipse Scale' in timeline */
-            animation: circle-animation 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
+  /* 🔥 SIDE FILL (removes black background) */
+  .bg-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(35px) brightness(0.45) saturate(1.2);
+    transform: scale(1.4);
+  }
 
-        /* THE LOGO: Clipped to a circle to hide JPEG corners */
-        .logo {
-            width: 280px; 
-            height: auto;
-            z-index: 2;
-            border-radius: 50%; /* Removes square corners */
-            transform: scale(0); 
-            opacity: 0;
-            /* Delay 0.4s: Logo only pops AFTER circle starts growing */
-            animation: 
-                logo-pop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s forwards,
-                logo-move 0.6s ease-in-out 1.8s forwards;
-        }
-
-        /* THE TEXT: Appears exactly as logo moves left */
-        .text-altronz {
-            color: white;
-            font-size: 90px; 
-            font-weight: 900;
-            position: absolute;
-            left: 50%;
-            opacity: 0;
-            white-space: nowrap;
-            /* Starts at 1.8s to match 'Altronz Slide in' */
-            animation: text-reveal 0.6s ease-out 1.9s forwards;
-        }
-
-        /* --- KEYFRAMES --- */
-
-        @keyframes circle-animation {
-            0% { transform: scale(0); opacity: 0; }
-            20% { opacity: 1; }
-            80% { opacity: 0; }
-            100% { transform: scale(1.4); opacity: 0; }
-        }
-
-        @keyframes logo-pop {
-            0% { transform: scale(0); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        @keyframes logo-move {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-210px); } 
-        }
-
-        @keyframes text-reveal {
-            0% { opacity: 0; transform: translateX(-50px); }
-            100% { opacity: 1; transform: translateX(-50px); } 
-        }
-
-        /* --- MOBILE RESPONSIVE ADJUSTMENTS --- */
-        @media (max-width: 768px) {
-            .logo {
-                width: 40vw; /* Scales logo based on screen width */
-            }
-            .expanding-circle {
-                width: 45vw;
-                height: 45vw;
-            }
-            .text-altronz {
-                font-size: 12vw; /* Scales font for mobile */
-            }
-            @keyframes logo-move {
-                0% { transform: translateX(0); }
-                100% { transform: translateX(-25vw); } 
-            }
-            @keyframes text-reveal {
-                0% { opacity: 0; transform: translateX(-5vw); }
-                100% { opacity: 1; transform: translateX(-5vw); } 
-            }
-        }
-    </style>
+  /* 🔥 MAIN VIDEO (no crop) */
+  .main-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+</style>
 </head>
+
 <body>
 
-    <div class="container">
-        <div class="expanding-circle"></div>
+<div class="video-container">
 
-        <img src="LOGO.jpeg" alt="Logo" class="logo">
+  <!-- Background filler -->
+  <video class="bg-video" autoplay muted loop playsinline>
+    <source src="animation.mp4" type="video/mp4">
+  </video>
 
-        <div class="text-altronz">Altronz</div>
-    </div>
+  <!-- Foreground video -->
+  <video class="main-video" autoplay muted loop playsinline>
+    <source src="animation.mp4" type="video/mp4">
+  </video>
+
+</div>
 <script>
     // Check if the user has already seen the animation in this session
-    if (sessionStorage.getItem('visited')) {
-        // Skip animation and go straight to home.html
-        window.location.href = 'home.html';
+    if (sessionStorage.getItem("visited")) {
+      window.location.href = "home.html";
     } else {
-        // Set the flag so they don't see it again
-        sessionStorage.setItem('visited', 'true');
-        
-        // Wait for the animation to finish (3s) then redirect
-        setTimeout(() => {
-            window.location.href = 'home.html';
-        }, 3000);
+      sessionStorage.setItem("visited", "true");
+
+      // Redirect after animation duration
+      setTimeout(() => {
+        window.location.href = "home.html";
+      }, 8000); // match your video length
     }
-</script></script>
+  </script>
+
 </body>
 </html>
