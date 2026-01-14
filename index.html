@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Welcome</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<title>Welcome | Altronz Engineering</title>
 
 <style>
   * {
@@ -16,34 +16,50 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background: black;
+    background: #000; /* Solid black base */
   }
 
+  /* Container spans the full viewport */
   .video-container {
     position: relative;
     width: 100vw;
     height: 100vh;
-    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: black;
   }
 
-  /* 🔥 SIDE FILL (removes black background) */
+  /* 🔥 SIDE FILL (Blurred Background) */
   .bg-video {
     position: absolute;
-    inset: 0;
+    top: 50%;
+    left: 50%;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: blur(35px) brightness(0.45) saturate(1.2);
-    transform: scale(1.4);
+    transform: translate(-50%, -50%) scale(1.5); /* Scale up to ensure no edges show */
+    filter: blur(40px) brightness(0.4) saturate(1.2);
+    z-index: 1;
   }
 
-  /* 🔥 MAIN VIDEO (no crop) */
+  /* 🔥 MAIN VIDEO (Foreground) */
   .main-video {
-    position: absolute;
-    inset: 0;
+    position: relative;
+    z-index: 2;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: contain; /* Ensures the logo isn't cropped */
+    max-width: 100%;
+  }
+
+  /* RESPONSIVE TWEAK: On very tall screens (mobile), 
+     ensure the logo remains a prominent size */
+  @media (max-aspect-ratio: 9/16) {
+    .main-video {
+      width: 100%;
+      height: auto;
+    }
   }
 </style>
 </head>
@@ -51,18 +67,15 @@
 <body>
 
 <div class="video-container">
-
-  <!-- Background filler -->
-  <video class="bg-video" autoplay muted loop playsinline>
+  <video class="bg-video" autoplay muted loop playsinline poster="logo.mp4">
     <source src="logo.mp4" type="video/mp4">
   </video>
 
-  <!-- Foreground video -->
-  <video class="main-video" autoplay muted loop playsinline>
+  <video class="main-video" autoplay muted playsinline poster="logo.mp4">
     <source src="logo.mp4" type="video/mp4">
   </video>
-
 </div>
+
 <script>
     // Check if the user has already seen the animation in this session
     if (sessionStorage.getItem("visited")) {
@@ -70,14 +83,20 @@
     } else {
       sessionStorage.setItem("visited", "true");
 
-      // Redirect after animation duration
+      // Redirect after animation duration (8 seconds)
       setTimeout(() => {
         window.location.href = "home.html";
-      }, 8000); // match your video length
+      }, 8000); 
     }
-  </script>
+
+    // Optional: Fail-safe redirect if video fails to load
+    window.addEventListener('load', function() {
+       const video = document.querySelector('.main-video');
+       video.onended = function() {
+         window.location.href = "home.html";
+       };
+    });
+</script>
 
 </body>
 </html>
-
-
