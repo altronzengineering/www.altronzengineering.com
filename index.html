@@ -89,14 +89,11 @@
       }, 8000); 
     }
 
-    // Optional: Fail-safe redirect if video fails to load
-    window.addEventListener('load', function() {
-       const video = document.querySelector('.main-video');
-       video.onended = function() {
-         window.location.href = "home.html";
+ 
        };
     });
 </script>
 
 </body>
 </html>
+
