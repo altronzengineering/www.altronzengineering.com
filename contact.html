@@ -76,7 +76,7 @@
         }
 
         .main-card {
-            max-width: 900px;
+            max-width: 1000px;
             width: 95%;
             padding: 60px 40px;
             background: var(--glass-bg); 
@@ -101,29 +101,54 @@
 
         .contact-info {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
             margin-top: 40px;
         }
 
         .contact-item {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 30px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 30px 15px;
             border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .contact-item:hover {
             border-color: var(--brand-red);
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            background: rgba(255, 0, 0, 0.05);
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.15);
+        }
+
+        .contact-item svg {
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover svg {
+            transform: scale(1.1);
+            stroke: var(--brand-red);
         }
 
         .contact-item strong {
             color: var(--brand-red);
             display: block;
-            margin-bottom: 10px;
-            font-size: 1.2rem;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-item p {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.8rem;
+            word-break: break-all;
         }
 
         /* --- DOCK COMPONENT STYLES --- */
@@ -197,13 +222,13 @@
             transition: background-color 0.3s ease-in-out;
         }
 
-        /* Active Indicator Color */
         .dock-item.active .dock-indicator { background-color: #2e86de; }
 
         @media (max-width: 768px) {
             .dock-panel { gap: 0.75rem; bottom: 1rem; }
             .dock-icon-wrapper { width: 3rem; height: 3rem; }
             .heading { font-size: 26px; }
+            .main-card { padding: 40px 20px; }
         }
     </style>
 </head>
@@ -219,20 +244,40 @@
         </header>
 
         <div class="main-card">
-            <h2 class="heading">Get In Touch</h2>
-            <p style="color: rgba(255,255,255,0.8); font-size: 1.1rem;">
-                Have a project idea or want to join our initiative? Reach out to us.
+            <h2 class="heading">Initiate Connection</h2>
+            <p style="color: rgba(255,255,255,0.8); font-size: 1.1rem; max-width: 600px; margin: 0 auto 20px;">
+                Connect with our engineering ecosystem through our official channels.
             </p>
 
             <div class="contact-info">
-                <div class="contact-item">
-                    <strong>📧 Email</strong>
-                    <p style="color: rgba(255,255,255,0.6);">contact@altronz.com</p>
-                </div>
-                <div class="contact-item">
-                    <strong>📍 Location</strong>
-                    <p style="color: rgba(255,255,255,0.6);">Engineering Innovation Hub</p>
-                </div>
+                <a href="mailto:altronzengineering@gmail.com" class="contact-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+                    <strong>Email Us</strong>
+                    <p>altronzengineering@gmail.com</p>
+                </a>
+
+                <a href="https://www.linkedin.com/in/altronz-engineering-356a223a4/" target="_blank" class="contact-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                    <strong>LinkedIn</strong>
+                    <p>Professional Hub</p>
+                </a>
+
+                <a href="https://www.instagram.com/altronz_engineering?igsh=c2xqa3p2OTloOXQ4" target="_blank" class="contact-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                    <strong>Instagram</strong>
+                    <p>Visual Progress</p>
+                </a>
+
+                <a href="https://altronzengineering.blogspot.com/2026/01/altronz-engineering_13.html" target="_blank" class="contact-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                    <strong>Engineering Blog</strong>
+                    <p>Technical Journal</p>
+                </a>
+            </div>
+
+            <div style="margin-top: 50px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1);">
+                <p style="color: var(--brand-red); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px;">Headquarters</p>
+                <p style="color: rgba(255,255,255,0.5); font-size: 0.9rem; margin-top: 5px;">Engineering Innovation Hub • Robotic Systems Division</p>
             </div>
         </div>
     </div>
@@ -278,13 +323,13 @@
             <div class="dock-indicator"></div>
         </a>
 
-       <a href="achievements.html" class="dock-item">
-        <span class="dock-label">Achievements & Resources</span>
-        <div class="dock-icon-wrapper">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M22 1v17a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V1"/><path d="M14 8H8"/><path d="M16 12H8"/><path d="M12 16H8"/></svg>
-        </div>
-        <div class="dock-indicator"></div>
-    </a>
+        <a href="achievements.html" class="dock-item">
+            <span class="dock-label">Achievements & Resources</span>
+            <div class="dock-icon-wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M22 1v17a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V1"/><path d="M14 8H8"/><path d="M16 12H8"/><path d="M12 16H8"/></svg>
+            </div>
+            <div class="dock-indicator"></div>
+        </a>
 
         <a href="contact.html" class="dock-item active">
             <span class="dock-label">Contact</span>
