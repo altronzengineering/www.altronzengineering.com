@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Altronz Engineering | Home</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
@@ -13,6 +13,7 @@
         :root {
             --brand-red: #ff0000;
             --brand-white: #ffffff;
+            --brand-blue: #007bff; /* Modern Blue */
             --bg-dark: #050505;
             --glass-bg: rgba(20, 20, 20, 0.7);
         }
@@ -45,7 +46,7 @@
 
         header {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -61,7 +62,7 @@
         }
 
         .main-card {
-            max-width: 1100px; width: 95%;
+            max-width: 900px; width: 95%;
             padding: 60px 40px;
             background: var(--glass-bg); 
             backdrop-filter: blur(18px);
@@ -72,11 +73,33 @@
             text-align: center;
         }
 
+        /* UPDATED: Gradient Heading */
         .heading { 
-            font-size: 32px; font-weight: 900; margin-bottom: 25px;
+            font-size: clamp(24px, 5vw, 42px);
+            font-weight: 900; 
+            margin-bottom: 15px;
             text-transform: uppercase;
-            background: linear-gradient(135deg, #ffffff 0%, var(--brand-red) 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, #fff 30%, var(--brand-red) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .slogan-main {
+            font-size: 22px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--brand-red);
+            margin-bottom: 20px;
+        }
+
+        .slogan-sub {
+            font-size: 18px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.8);
+            font-style: italic;
+            letter-spacing: 1px;
         }
 
         /* --- DOCK STYLES --- */
@@ -110,7 +133,6 @@
             width: 3.5rem; height: 3.5rem; border-radius: 1rem;
         }
 
-        /* Logic for Active Item Styling */
         .dock-item.active .dock-icon-wrapper { background-color: #333; }
         .dock-text-icon { color: #fff; font-size: 1rem; font-weight: 600; }
 
@@ -120,12 +142,18 @@
             transition: background-color 0.3s ease;
         }
 
-        /* Logic for Active Indicator (Blue Bar) */
-        .dock-item.active .dock-indicator { background-color: #2e86de; }
+        /* UPDATED: Indicator changed to blue */
+        .dock-item.active .dock-indicator { 
+            background-color: var(--brand-blue); 
+            box-shadow: 0 0 10px var(--brand-blue);
+        }
 
         @media (max-width: 768px) {
             .dock-panel { gap: 0.75rem; bottom: 1rem; }
             .dock-icon-wrapper { width: 2.8rem; height: 2.8rem; }
+            .heading { font-size: 24px; }
+            .slogan-main { font-size: 16px; letter-spacing: 2px; }
+            .slogan-sub { font-size: 14px; }
         }
     </style>
 </head>
@@ -135,13 +163,16 @@
 
     <div class="content-overlay">
         <header>
-            <img src="LOGO.jpeg" alt="Logo" class="brand-logo">
-            <h1 style="font-weight: 900; font-size: 3rem; text-transform: uppercase;">Altronz<span style="color:var(--brand-red)">.</span></h1>
+            <img src="LOGO.jpeg" alt="Altronz Logo" class="brand-logo">
+            <h1 style="font-weight: 900; font-size: 3rem; text-transform: uppercase;">
+                Altronz<span style="color:var(--brand-red)">.</span>
+            </h1>
         </header>
 
         <div class="main-card">
-            <h2 class="heading">Welcome to Altronz</h2>
-            <p>Our official homepage content goes here.</p>
+            <h2 class="heading">Welcome to Altronz Engineering</h2>
+            <div class="slogan-main">Think. Design. Build.</div>
+            <div class="slogan-sub">Where Ideas Become Engineering Excellence</div>
         </div>
     </div>
 
